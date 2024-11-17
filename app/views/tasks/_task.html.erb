@@ -1,0 +1,14 @@
+<div id="<%= dom_id task %>" class="bg-gray-800 shadow rounded-lg px-5 py-3 my-4">
+  <p class="my-5">
+    <strong class="text-lg block font-bold mb-1 text-gray-100">Name:</strong>
+    <span class="text-gray-300"><%= task.name %></span>
+  </p>
+
+  <p class="my-5">
+    <strong class="text-lg block font-bold mb-1 text-gray-100">Description:</strong>
+    <span class="text-gray-300"><%= task.description %></span>
+  </p>
+  <p>
+    <%= link_to "Show this task", task, class: "ml-2 rounded-lg py-3 px-5 bg-gray-700 text-gray-100 inline-block font-medium hover:bg-gray-600" %>
+  </p>
+</div>

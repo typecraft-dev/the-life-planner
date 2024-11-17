@@ -1,0 +1,6 @@
+<h1 class="font-extrabold my-4 text-4xl text-gray-100">New task</h1>
+<div class="bg-gray-800 shadow rounded-lg p-4 md:w-2/3">
+  <%= render "form", task: @task %>
+
+  <%= link_to "Back to tasks", tasks_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-700 text-gray-100 inline-block font-medium hover:bg-gray-600" %>
+</div>

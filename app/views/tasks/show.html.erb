@@ -1,0 +1,24 @@
+<% if notice.present? %>
+  <p class="py-2 px-3 bg-green-900 mb-5 text-green-300 font-medium rounded-lg inline-block" id="notice">
+    <%= notice %>
+  </p>
+<% end %>
+
+<h3 class="text-4xl font-extrabold my-4 text-gray-100">Task</h3>
+<div class="md:w-2/3 w-full flex">
+  <div class="bg-gray-800 shadow rounded-lg px-5 py-3 my-4">
+    <h1 class="font-bold text-2xl my-4 text-gray-100">
+      <%= @task.name %>
+    </h1>
+
+    <p class="my-4 text-gray-300">
+      <%= @task.description %>
+    </p>
+
+    <%= link_to "Edit this task", edit_task_path(@task), class: "mt-2 rounded-lg py-3 px-5 bg-gray-700 text-gray-100 inline-block font-medium hover:bg-gray-600" %>
+    <%= link_to "Back to tasks", tasks_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-700 text-gray-100 inline-block font-medium hover:bg-gray-600" %>
+    <div class="inline-block ml-2">
+      <%= button_to "Destroy this task", @task, method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-red-700 text-gray-100 font-medium hover:bg-red-600" %>
+    </div>
+  </div>
+</div>

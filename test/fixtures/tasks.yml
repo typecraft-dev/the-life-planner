@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+first_task:
+  name: Clean Garage
+  description: Make sure to clean the garage please.
+  status: in_progress
+
+second_task:
+  name: Clean Kitchen
+  description: Clean up the kitchen and put away the dishes
+  status: in_progress
+
+third_task:
+  name: Clean House
+  description: Clean up the kitchen and put away the dishes
+  status: completed
+

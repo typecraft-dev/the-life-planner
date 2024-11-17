@@ -1,0 +1,32 @@
+<%= form_with(model: task, class: "contents") do |form| %>
+  <% if task.errors.any? %>
+    <div id="error_explanation" class="bg-red-900 text-red-300 px-3 py-2 font-medium rounded-lg mt-12">
+      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+      <ul>
+        <% task.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-5">
+    <%= form.label :name, class: "text-gray-100" %>
+    <%= form.text_field :name, rows: 4, class: "block shadow rounded-md border border-gray-600 bg-gray-700 text-gray-100 outline-none px-3 py-2 mt-2 w-full focus:border-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-50" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :description, class: "text-gray-100" %>
+    <%= form.textarea :description, rows: 4, class: "block shadow rounded-md border border-gray-600 bg-gray-700 text-gray-100 outline-none px-3 py-2 mt-2 w-full focus:border-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-50" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :status, class: "text-gray-100" %>
+    <%= form.select :status, Task::STATUSES, class: "block shadow rounded-md border border-gray-600 bg-gray-700 text-gray-100 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="inline">
+    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  </div>
+<% end %>

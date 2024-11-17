@@ -1,0 +1,29 @@
+<div class="w-full">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-900 mb-5 text-green-300 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <% content_for :title, "Tasks" %>
+
+  <div class="flex justify-between items-center">
+    <h1 class="font-extrabold text-4xl text-gray-100">Tasks</h1>
+    <%= link_to "New task", new_task_path, class: "rounded-lg py-3 px-5 bg-blue-700 text-white block font-medium hover:bg-blue-600" %>
+  </div>
+
+  <% if @in_progress_tasks.empty? && @completed_tasks.empty? %>
+    <div class="bg-gray-800 shadow rounded-lg px-8 py-5 my-4">
+      <p class="text-4xl font-extrabold my-4 text-gray-100">No Tasks!</p>
+      <p class="text-lg text-gray-300 font-medium">Create a new task. Or enjoy your new-found free time, yay!</p>
+    </div>
+  <% else %>
+    <h3 class="text-4xl font-extrabold my-4 text-gray-100">In Progress</h3>
+    <div id="tasks" class="min-w-full">
+      <%= render partial: "tasks/task", collection: @in_progress_tasks, cached: true %>
+    </div>
+
+    <h3 class="text-4xl font-extrabold my-4 text-gray-100">Completed</h3>
+    <div id="tasks" class="min-w-full">
+      <%= render partial: "tasks/task", collection: @completed_tasks, cached: true %>
+    </div>
+  </div>
+<% end %>
