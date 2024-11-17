@@ -36,6 +36,13 @@
                 <%= link_to "Tasks", tasks_path, class: "inline-flex items-center border-b-2 border-indigo-400 px-1 pt-1 text-sm font-medium text-gray-100" %>
               </div>
             </div>
+            <div class="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
+              <% if Current.user %>
+                <%= button_to "Logout", session_path, method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-700 text-gray-100 font-medium hover:bg-gray-600" %>
+              <% else %>
+                <%= button_to "Login", new_session_path, class: "mt-2 rounded-lg py-3 px-5 bg-gray-700 text-gray-100 font-medium hover:bg-gray-600" %>
+              <% end %>
+            </div>
           </div>
         </div>
       </nav>
