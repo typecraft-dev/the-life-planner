@@ -4,14 +4,23 @@ first_task:
   name: Clean Garage
   description: Make sure to clean the garage please.
   status: in_progress
+  group: my_family
 
 second_task:
   name: Clean Kitchen
   description: Clean up the kitchen and put away the dishes
   status: in_progress
+  group: my_family
 
 third_task:
   name: Clean House
   description: Clean up the kitchen and put away the dishes
   status: completed
+  group: my_family
 
+
+fourth_task:
+  name: Clean House Again
+  description: Clean up the kitchen and put away the dishes
+  status: completed
+  group: another_family

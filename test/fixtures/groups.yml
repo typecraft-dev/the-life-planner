@@ -1,0 +1,7 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+my_family:
+  name: My Family
+
+another_family:
+  name: Another Family
