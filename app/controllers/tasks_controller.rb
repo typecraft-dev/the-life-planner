@@ -3,7 +3,7 @@ class TasksController < ApplicationController
 
   # GET /tasks or /tasks.json
   def index
-    tasks = Task.all.group_by(&:status)
+    tasks = Current.user.group.tasks.group_by(&:status)
     @in_progress_tasks = tasks.fetch("in_progress", [])
     @completed_tasks = tasks.fetch("completed", [])
   end
@@ -23,7 +23,7 @@ class TasksController < ApplicationController
 
   # POST /tasks or /tasks.json
   def create
-    @task = Task.new(task_params)
+    @task = Current.user.group.tasks.new(task_params)
 
     respond_to do |format|
       if @task.save
