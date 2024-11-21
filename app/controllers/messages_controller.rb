@@ -6,7 +6,7 @@ class MessagesController < ApplicationController
     @message.user = Current.user
     @message.save
 
-    redirect_to task_path(@task)
+    render json: {}, status: :no_content
   end
 
   private

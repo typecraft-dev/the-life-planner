@@ -28,6 +28,7 @@
   <div class="bg-gray-800 shadow rounded-lg px-5 py-3 my-4 mt-8">
     <div class="space-y-4 max-h-96 my-4 overflow-y-auto">
       <div id="messages">
+        <%= turbo_stream_from @task, "messages" %>
         <%= render @task.messages %>
       </div>
     </div>
