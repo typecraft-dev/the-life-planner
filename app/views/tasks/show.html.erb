@@ -22,3 +22,28 @@
     </div>
   </div>
 </div>
+
+<h3 class="text-4xl font-extrabold my-4 text-gray-100">Messages</h3>
+<% unless @task.messages.empty? %>
+  <div class="bg-gray-800 shadow rounded-lg px-5 py-3 my-4 mt-8">
+    <div class="space-y-4 max-h-96 my-4 overflow-y-auto">
+      <div id="messages">
+        <%= turbo_stream_from @task, "messages" %>
+        <%= render @task.messages %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<%= form_with model: [@task, Message.new], class: "mt-4", data: { controller: "reset-form", action: "turbo:submit-end->reset-form#reset" } do |f| %>
+  <div class="flex gap-4">
+    <%= f.text_area :content,
+        class: "flex-1 min-h-[80px] rounded-lg border-gray-600 bg-gray-700 text-gray-100 shadow-sm focus:border-indigo-400 focus:ring-indigo-400",
+        placeholder: "Type your message..."
+      %>
+
+    <%= f.submit "Send",
+      class: "rounded-lg py-3 px-5 bg-blue-700 text-white inline-block font-medium cursor-pointer hover:bg-blue-600"
+    %>
+  </div>
+<% end %>

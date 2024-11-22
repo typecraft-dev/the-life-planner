@@ -1,0 +1,13 @@
+<div data-controller="task-messages" class="p-4 my-4 border-b border-gray-700">
+  <div class="flex justify-between items-start">
+    <div class="font-bold text-gray-100">
+      <%= message.user.email_address %>
+    </div>
+    <div class="text-sm text-gray-400">
+      <%= time_ago_in_words(message.created_at) %> ago
+    </div>
+  </div>
+  <div class="mt-2 text-gray-300">
+    <%= message.content %>
+  </div>
+</div>
