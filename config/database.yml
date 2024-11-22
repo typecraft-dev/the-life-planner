@@ -34,6 +34,10 @@ development:
     <<: *sqlite
     database: storage/life_task_planner_development_cable.sqlite3
     migrations_paths: db/cable_migrate
+  queue:
+    <<: *sqlite
+    database: storage/life_task_planner_development_queue.sqlite3
+    migrations_paths: db/queue_migrate
 
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
