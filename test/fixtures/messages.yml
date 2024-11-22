@@ -1,11 +1,16 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  task: one
+  task: first_task
   user: one
-  content: MyText
+  content: Did you actually clean this, too? Because, I don't see it.
 
 two:
-  task: two
+  task: first_task
   user: two
-  content: MyText
+  content: I did clean this, thanks for asking.
+
+three:
+  task: second_task
+  user: one
+  content: Yo, I'm hungry. Can you make me a sandwich?
