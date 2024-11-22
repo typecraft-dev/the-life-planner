@@ -8,7 +8,7 @@ gem "propshaft"
 gem "pg", "~> 1.1"
 
 # use sqlite3 as the database for solid trifecta
-gem "sqlite3", "~> 2.0", ">= 2.0.2"
+gem "sqlite3", "~> 2.3"
 
 gem "mission_control-jobs"
 
