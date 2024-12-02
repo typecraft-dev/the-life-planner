@@ -100,14 +100,14 @@ production:
     username: the_life_planner
     password: <%= ENV["THE_LIFE_PLANNER_DATABASE_PASSWORD"] %>
   cache:
-    <<: *primary_production
-    database: the_life_planner_production_cache
+    <<: *sqlite
+    database: storage/life_task_planner_production_cache.sqlite3
     migrations_paths: db/cache_migrate
-  queue:
-    <<: *primary_production
-    database: the_life_planner_production_queue
-    migrations_paths: db/queue_migrate
   cable:
-    <<: *primary_production
-    database: the_life_planner_production_cable
+    <<: *sqlite
+    database: storage/life_task_planner_production_cable.sqlite3
     migrations_paths: db/cable_migrate
+  queue:
+    <<: *sqlite
+    database: storage/life_task_planner_production_queue.sqlite3
+    migrations_paths: db/queue_migrate
