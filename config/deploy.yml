@@ -2,12 +2,12 @@
 service: the_life_planner
 
 # Name of the container image.
-image: your-user/the_life_planner
+image: typecraft/life_planner_v2
 
 # Deploy to these servers.
 servers:
   web:
-    - 192.168.0.1
+    - 64.227.16.33
   # job:
   #   hosts:
   #     - 192.168.0.1
@@ -19,13 +19,13 @@ servers:
 # Note: If using Cloudflare, set encryption mode in SSL/TLS setting to "Full" to enable CF-to-app encryption.
 proxy:
   ssl: true
-  host: app.example.com
+  host: life-planner.typecraft.dev
 
 # Credentials for your image host.
 registry:
   # Specify the registry server, if you're not using Docker Hub
   # server: registry.digitalocean.com / ghcr.io / ...
-  username: your-user
+  username: typecraft
 
   # Always use an access token rather than real password when possible.
   password:
@@ -48,7 +48,7 @@ env:
 
     # Match this to any external database server to configure Active Record correctly
     # Use the_life_planner-db for a db accessory server on same machine via local kamal docker network.
-    # DB_HOST: 192.168.0.2
+    DB_HOST: DB_HOST
 
     # Log everything from Rails
     # RAILS_LOG_LEVEL: debug
@@ -65,7 +65,7 @@ aliases:
 # Use a persistent storage volume for sqlite database files and local Active Storage files.
 # Recommended to change this to a mounted volume path that is backed up off server.
 volumes:
-  - "the_life_planner_storage:/rails/storage"
+  - "volume_nyc1_02:/rails/storage"
 
 
 # Bridge fingerprinted assets, like JS and CSS, between versions to avoid
