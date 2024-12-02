@@ -2,7 +2,7 @@
 service: the_life_planner
 
 # Name of the container image.
-image: typecraft/life_planner_v2
+image: typecraft/the_life_planner
 
 # Deploy to these servers.
 servers:
