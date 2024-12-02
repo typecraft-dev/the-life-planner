@@ -97,8 +97,7 @@ production:
   primary: &primary_production
     <<: *default
     database: the_life_planner_production
-    username: the_life_planner
-    password: <%= ENV["THE_LIFE_PLANNER_DATABASE_PASSWORD"] %>
+    url: <%= Rails.application.credentials.db_url %>
   cache:
     <<: *sqlite
     database: storage/life_task_planner_production_cache.sqlite3

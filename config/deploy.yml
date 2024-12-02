@@ -1,8 +1,8 @@
 # Name of your application. Used to uniquely configure containers.
-service: the_life_planner
+service: life_planner
 
 # Name of the container image.
-image: typecraft/the_life_planner
+image: typecraft/life_planner
 
 # Deploy to these servers.
 servers:
