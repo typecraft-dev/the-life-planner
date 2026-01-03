@@ -2,6 +2,7 @@ default: &default
   dispatchers:
     - polling_interval: 1
       batch_size: 500
+  scheduler: true   
   workers:
     - queues: "*"
       threads: 3

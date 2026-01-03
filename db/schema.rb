@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_21_024034) do
+ActiveRecord::Schema[8.0].define(version: 2026_01_03_111221) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -53,6 +53,17 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_21_024034) do
     t.index ["group_id"], name: "index_tasks_on_group_id"
   end
 
+  create_table "user_activities", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "action"
+    t.string "ip_address"
+    t.string "user_agent"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["action"], name: "index_user_activities_on_action"
+    t.index ["user_id"], name: "index_user_activities_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email_address", null: false
     t.string "password_digest", null: false
@@ -67,5 +78,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_21_024034) do
   add_foreign_key "messages", "users"
   add_foreign_key "sessions", "users"
   add_foreign_key "tasks", "groups"
+  add_foreign_key "user_activities", "users"
   add_foreign_key "users", "groups"
 end

@@ -1,0 +1,31 @@
+bundle install 
+rails db:create 
+rails db:migrate 
+rails tailwindcss:install 
+rails tailwindcss:build
+rails db:fixtures:load
+rails generate solid_cache:install
+one@example.com / password
+
+bin/rails dbconsole
+\dt (List of relations / tables)
+
+bin/rails db:migrate:redo:queue VERSION=[TIMESTAMP]
+# OR if you just want to clear it and start fresh:
+bin/rails db:drop:queue
+bin/rails db:create:queue
+bin/rails db:migrate:queue
+
+bin/rails db:migrate:redo:queue VERSION=20260102075723
+
+# bin/rails c
+
+ActiveRecord::Base.establish_connection(:queue)
+SolidQueue::RecurringTask.delete_all
+
+SolidQueue::RecurringTask.all
+
+-------------------------------------------------------
+
+ActiveRecord::Base.establish_connection(:queue)
+SolidQueue::RecurringExecution.all

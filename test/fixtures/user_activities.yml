@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  action: login
+  ip_address: 127.0.0.1
+  user_agent: Chrome/90.0.4430.93
+
+two:
+  user: two
+  action: logout
+  ip_address: 127.0.0.1
+  user_agent: Mozilla/5.0
