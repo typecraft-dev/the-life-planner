@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 1) do
+ActiveRecord::Schema[8.0].define(version: 2026_01_02_075723) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_catalog.plpgsql"
+
   create_table "solid_queue_blocked_executions", force: :cascade do |t|
     t.bigint "job_id", null: false
     t.string "queue_name", null: false
@@ -19,7 +22,7 @@ ActiveRecord::Schema[8.0].define(version: 1) do
     t.datetime "expires_at", null: false
     t.datetime "created_at", null: false
     t.index ["concurrency_key", "priority", "job_id"], name: "index_solid_queue_blocked_executions_for_release"
-    t.index ["expires_at", "concurrency_key"], name: "index_solid_queue_blocked_executions_for_maintenance"
+    t.index ["expires_at"], name: "index_solid_queue_blocked_executions_for_maintenance"
     t.index ["job_id"], name: "index_solid_queue_blocked_executions_on_job_id", unique: true
   end
 
@@ -33,7 +36,9 @@ ActiveRecord::Schema[8.0].define(version: 1) do
 
   create_table "solid_queue_failed_executions", force: :cascade do |t|
     t.bigint "job_id", null: false
-    t.text "error"
+    t.text "exception_class"
+    t.text "message"
+    t.text "backtrace"
     t.datetime "created_at", null: false
     t.index ["job_id"], name: "index_solid_queue_failed_executions_on_job_id", unique: true
   end
@@ -101,21 +106,19 @@ ActiveRecord::Schema[8.0].define(version: 1) do
     t.string "command", limit: 2048
     t.string "class_name"
     t.text "arguments"
-    t.string "queue_name"
-    t.integer "priority", default: 0
-    t.boolean "static", default: true, null: false
+    t.string "queue_name", null: false
+    t.integer "priority", default: 0, null: false
     t.text "description"
+    t.boolean "static", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["key"], name: "index_solid_queue_recurring_tasks_on_key", unique: true
-    t.index ["static"], name: "index_solid_queue_recurring_tasks_on_static"
   end
 
   create_table "solid_queue_scheduled_executions", force: :cascade do |t|
     t.bigint "job_id", null: false
-    t.string "queue_name", null: false
-    t.integer "priority", default: 0, null: false
     t.datetime "scheduled_at", null: false
+    t.integer "priority", default: 0, null: false
     t.datetime "created_at", null: false
     t.index ["job_id"], name: "index_solid_queue_scheduled_executions_on_job_id", unique: true
     t.index ["scheduled_at", "priority", "job_id"], name: "index_solid_queue_dispatch_all"
@@ -131,11 +134,4 @@ ActiveRecord::Schema[8.0].define(version: 1) do
     t.index ["key", "value"], name: "index_solid_queue_semaphores_on_key_and_value"
     t.index ["key"], name: "index_solid_queue_semaphores_on_key", unique: true
   end
-
-  add_foreign_key "solid_queue_blocked_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
-  add_foreign_key "solid_queue_claimed_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
-  add_foreign_key "solid_queue_failed_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
-  add_foreign_key "solid_queue_ready_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
-  add_foreign_key "solid_queue_recurring_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
-  add_foreign_key "solid_queue_scheduled_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
 end

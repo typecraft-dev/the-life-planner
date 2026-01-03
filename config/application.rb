@@ -10,8 +10,12 @@ module TheLifePlanner
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 8.0
+    config.active_job.queue_adapter = :solid_queue
+
 
     config.mission_control.jobs.base_controller_class = "AdminController"
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore
 
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.

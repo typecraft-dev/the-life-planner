@@ -5,7 +5,7 @@ gem "rails", "~> 8.0.0"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
 # Use postgresql as the database for Active Record
-gem "pg", "~> 1.1"
+gem "pg", "~> 1.5"
 
 # use sqlite3 as the database for solid trifecta
 gem "sqlite3", "~> 2.0", ">= 2.0.2"
@@ -69,3 +69,18 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "fugit"
+
+gem "rorvswild"
+
+group :development do
+  gem 'rack-mini-profiler'
+  # Add these for advanced profiling features
+  gem 'stackprof'      # Required for Flamegraphs
+  gem 'memory_profiler' # Required for Memory Profiling
+end
+
+gem "minitest", "~> 5.0"
+
+gem "rails-controller-testing"

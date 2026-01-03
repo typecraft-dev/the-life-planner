@@ -15,6 +15,9 @@
 default: &default
   adapter: postgresql
   encoding: unicode
+  host: localhost
+  username: postgres
+  password: postgres
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 sqlite: &sqlite
@@ -25,19 +28,23 @@ sqlite: &sqlite
 development:
   primary:
     <<: *default
-    database: the_life_planner_development
+    database: task_planner_development
+    
   cache:
-    <<: *sqlite
-    database: storage/life_task_planner_development_cache.sqlite3
+    <<: *default
+    database: task_planner_development_cache
     migrations_paths: db/cache_migrate
+
   cable:
-    <<: *sqlite
-    database: storage/life_task_planner_development_cable.sqlite3
+    <<: *default
+    database: task_planner_development_cable
     migrations_paths: db/cable_migrate
+
   queue:
-    <<: *sqlite
-    database: storage/life_task_planner_development_queue.sqlite3
+    <<: *default
+    database: task_planner_development_queue
     migrations_paths: db/queue_migrate
+
 
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
@@ -70,8 +77,25 @@ development:
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  <<: *default
-  database: the_life_planner_test
+  primary:
+    <<: *default
+    database: task_planner_test
+
+  cache:
+    <<: *default
+    database: task_planner_test_cache
+    migrations_paths: db/cache_migrate
+
+  cable:
+    <<: *default
+    database: task_planner_test_cable
+    migrations_paths: db/cable_migrate
+
+  queue:
+    <<: *default
+    database: task_planner_test_queue
+    migrations_paths: db/queue_migrate
+
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -96,17 +120,21 @@ test:
 production:
   primary: &primary_production
     <<: *default
-    database: the_life_planner_production
+    database: task_planner_production
     url: <%= Rails.application.credentials.db_url %>
+
   cache:
-    <<: *sqlite
-    database: storage/life_task_planner_production_cache.sqlite3
+    <<: *primary_production
+    database: task_planner_production_cache
     migrations_paths: db/cache_migrate
+
   cable:
-    <<: *sqlite
-    database: storage/life_task_planner_production_cable.sqlite3
+    <<: *primary_production
+    database: task_planner_production_cable
     migrations_paths: db/cable_migrate
+
   queue:
-    <<: *sqlite
-    database: storage/life_task_planner_production_queue.sqlite3
+    <<: *primary_production
+    database: task_planner_production_queue
     migrations_paths: db/queue_migrate
+

@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  # get "user_activities/index"
+  # get "user_activities/show"
+  # get "user_activities/destroy"
+
+  resources :user_activities, only: [:index, :show, :destroy]
+  
   mount MissionControl::Jobs::Engine, at: "/jobs"
 
   resource :session
@@ -17,5 +23,5 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
-  root "tasks#index"
+  root "tasks#index"  
 end
